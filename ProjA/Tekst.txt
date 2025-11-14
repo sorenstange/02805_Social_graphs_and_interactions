@@ -1,0 +1,16 @@
+In this project, we compare two fictional universes: The Lord of the Rings and Harry Potter.
+Both universes are globally popular, and while they differ in setting and style, they share several themes — such as the fight between good and evil — and include comparable characters like Gandalf and Dumbledore. Our goal is to explore how these two worlds are structured through their characters and relationships and how similar they are.
+
+We create two character networks, one for each universe, using data downloaded from the official fandom wikis.
+In these networks, each node represents a character, and edges are formed between characters whose pages link to each other.
+Along with the network data, we also collect text and character attributes — such as race for The Lord of the Rings or Hogwarts house for Harry Potter.
+This gives us both relational and textual information to analyze.
+
+
+We use these graphs to study role equivalence — for example, whether characters like Gandalf and Dumbledore occupy similar structural positions in their respective stories. We also compare the overall social structures of the two networks to see if one universe appears more centralized, hierarchical, or evenly connected.
+
+
+In addition, we perform sentiment analysis on the textual content associated with each character.
+This allows us to examine how positive or negative descriptions are distributed and whether negativity tends to cluster around certain figures, such as Sauron or Voldemort.
+
+By combining network analysis and natural language processing, we hope to better understand the similarities and differences in how these two fantasy worlds are built — both in structure and in tone.
