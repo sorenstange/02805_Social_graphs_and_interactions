@@ -1,5 +1,5 @@
 import networkx as nx
-import re, pickle, urllib.request, time, json
+import re, pickle, urllib.request, time, json, requests
 
 #Define helper functions
 def extract_infobox(content):
@@ -151,3 +151,39 @@ def load_network(name = None):
         HP = load_network('HP')
         LOTR = load_network('LOTR')
         return nx.union(HP, LOTR)
+    
+
+def load_LabTM():
+    #download LabTM list for sentiment analysis
+
+    # Direct URL to the raw LabMT file
+    url = "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0026752.s001&type=supplementary"
+
+    # Download the file
+    r = requests.get(url)
+    r.raise_for_status()  # check if download worked
+    text = r.text
+
+    # Split into lines
+    lines = text.splitlines()
+
+    # Skip any lines before the header 
+    header_index = 0
+    for i, line in enumerate(lines):
+        if line.startswith("word"):
+            header_index = i
+            break
+
+    # Parse the header line
+    columns = lines[header_index].split('\t')
+
+    # Parse the remaining lines into a list of dictionaries
+    data = []
+    for line in lines[header_index+1:]:
+        values = line.split('\t')
+        if len(values) == len(columns):
+            data.append(dict(zip(columns, values)))
+
+    #  mapping word to happiness_average
+    word_scores = {row['word']: float(row['happiness_average']) for row in data}
+    return word_scores
